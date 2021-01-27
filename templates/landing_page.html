@@ -1,0 +1,23 @@
+{% extends 'base.html'%}
+
+{% block content %}
+    <br>
+    <div class="col-md-12 d-flex justify-content-center">
+        <div class="list-group justify-content-center">
+            {% if users %}
+                <div class="d-flex justify-content-center">
+                    <h5>Users</h5>
+                </div>
+                {% for user in users %}
+                    <a href="/users/{{ user.id }}/detail" class="list-group-item list-group-item-action">
+                        {{ user.full_name }}
+                    </a>
+                {% endfor %}
+            {% else %}
+                <h5>No user found.</h5>
+            {% endif %}
+            <br>
+            <a class="btn btn-primary btn-block" href="/users/new" methods="GET" role="button">New user</a>
+        </div>
+    </div>
+{% endblock %}

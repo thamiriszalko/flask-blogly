@@ -1,0 +1,26 @@
+{% extends 'base.html'%}
+
+{% block content %}
+    <br>
+    <div class="col-md-12 d-flex justify-content-center">
+        <h4>Create new user</h4>
+    </div>
+    </div>
+    <div class="col-md-12 d-flex justify-content-center">
+        <form action="/users/{{ user.id }}/edit" method="POST">
+            <div class="form-group text-center">
+                <label for="first_name">First name:</label>
+                <input class="form-control" type="text" name="first_name" id="first_name" value="{{ user.first_name }}">
+            </div>
+            <div class="form-group text-center">
+                <label for="last_name">Last name:</label>
+                <input class="form-control" type="text" name="last_name" id="last_name" value="{{ user.last_name }}">
+            </div>
+            <div class="form-group text-center">
+                <label for="profile_img">Profile image URL:</label>
+                <input class="form-control" name="profile_img" id="profile_imgt" value="{{ user.img_url }}">
+            </div>
+            <button class="btn btn-light btn-block" type="submit">Done</button>
+        </form>
+    </div>
+{% endblock %}
