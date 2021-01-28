@@ -21,5 +21,26 @@
                 <br>
             </div>
         </div>
+        <br>
+        <div class="justify-content-center row">
+            <div class="justify-content-center row">
+                <div class="col-md-12 text-center">
+                    <h4>Posts</h4>
+                </div>
+                <div class="list-group justify-content-center">
+                    {% if posts %}
+                        {% for post in posts %}
+                            <a href="/posts/{{ post.id }}/detail" class="list-group-item list-group-item-action">
+                                {{ post.title }}
+                            </a>
+                        {% endfor %}
+                    {% else %}
+                        <h5>You haven't posted yet.</h5>
+                    {% endif %}
+                    <br>
+                    <a class="btn btn-primary btn-block" href="/posts/{{ user.id }}/new" methods="GET" role="button">New post</a>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}

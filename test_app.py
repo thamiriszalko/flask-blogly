@@ -1,7 +1,7 @@
 from unittest import TestCase
 
 from app import app
-from models import db, User
+from models import db, User, Post
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost:5433/blogly_db'
 app.config['SQLALCHEMY_ECHO'] = False
@@ -22,8 +22,16 @@ class UserViewsTestCase(TestCase):
         user = User(first_name="First", last_name="Last")
         db.session.add(user)
         db.session.commit()
+        post = Post(
+            title='This is the title',
+            content='This is the content',
+            user_id=user.id
+        )
+        db.session.add(post)
+        db.session.commit()
 
         self.user_id = user.id
+        self.post_id = post.id
 
     def tearDown(self):
         db.session.rollback()
@@ -36,7 +44,15 @@ class UserViewsTestCase(TestCase):
             self.assertEqual(resp.status_code, 200)
             self.assertIn('First Last', html)
 
-    def test_show_pet(self):
+    def test_list_posts(self):
+        with app.test_client() as client:
+            resp = client.get(f"/users/{self.user_id}/detail")
+            html = resp.get_data(as_text=True)
+
+            self.assertEqual(resp.status_code, 200)
+            self.assertIn('This is the title', html)
+
+    def test_detail_user(self):
         with app.test_client() as client:
             resp = client.get(f'users/{self.user_id}/detail')
             html = resp.get_data(as_text=True)
@@ -85,14 +101,6 @@ class UserViewsTestCase(TestCase):
 
             self.assertEqual(200, resp.status_code)
             self.assertIn("Last", html)
-
-    def test_detail_user(self):
-        with app.test_client() as client:
-            resp = client.get(f"/users/{self.user_id}/detail")
-            html = resp.get_data(as_text=True)
-
-            self.assertEqual(200, resp.status_code)
-            self.assertIn("First", html)
 
     def test_delete_user(self):
         with app.test_client() as client:
