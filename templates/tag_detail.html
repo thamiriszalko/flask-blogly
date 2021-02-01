@@ -1,0 +1,36 @@
+{% extends 'base.html'%}
+
+{% block content %}
+    <br>
+    <div class="container">
+        <div class="d-flex justify-content-center row">
+            <div class="justify-content-center row">
+                <div class="col-md-12">
+                    <h4>Tag name: {{ tag.name }}</h4>
+                </div>
+                <div class="ustify-content-center col-md-12">
+                    <h4>Tag posts:</h4>
+                    <ul>
+                        <li>
+                            {% if tag.posts %}
+                                {% for post in tag.posts %}
+                                    <a href="/posts/{{ post.id }}/detail" class="list-group-item-action">
+                                        {{ post.title }}
+                                    </a>
+                                {% endfor %}
+                            {% else %}
+                            <h5>This tag has no posts.</h5>
+                        {% endif %}
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-12">
+                    <a class="btn btn-success" href="/tags/{{ tag.id }}/edit" role="button">Edit</a>
+                    <a class="btn btn-danger" href="/tags/{{ tag.id }}/delete" role="button">Delete</a>
+                    <a class="btn btn-light" href="/" role="button">Home</a>
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+{% endblock %}

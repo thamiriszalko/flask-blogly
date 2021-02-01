@@ -15,9 +15,18 @@
                     <p class="font-italic">By {{ user.full_name }}</p>
                 </div>
                 <div class="col-md-12">
+                    <p class="font-weight-bold">Tags:
+                        {% for tag in tags %}
+                            <a href="/tags/{{ tag.id }}/detail" class="badge badge-pill badge-info">
+                                {{ tag.name }}
+                            </a>
+                        {% endfor %}
+                    </p>
+                </div>
+                <div class="col-md-12">
                     <a class="btn btn-success" href="/posts/{{ post.id }}/edit" role="button">Edit</a>
                     <a class="btn btn-danger" href="/posts/{{ post.id }}/delete" role="button">Delete</a>
-                    <a class="btn btn-primary" href="/users/{{ post.user_id }}/detail" role="button">Back</a>
+                    <a class="btn btn-light" href="/users/{{ post.user_id }}/detail" role="button">Back</a>
                 </div>
                 <br>
             </div>

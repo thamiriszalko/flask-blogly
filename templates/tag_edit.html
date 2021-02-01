@@ -1,0 +1,20 @@
+{% extends 'base.html'%}
+
+{% block content %}
+    <br>
+    <div class="col-md-12 d-flex justify-content-center">
+        <h4>Edit post</h4>
+    </div>
+    <div class="container">
+        <div class="col-md-12 d-flex justify-content-center">
+            <form action="/tags/{{ tag.id }}/edit" method="POST">
+                <div class="form-group text-center">
+                    <label for="name">Name:</label>
+                    <input class="form-control" type="text" name="name" id="name" value="{{ tag.name }}">
+                </div>
+                <button class="btn btn-primary btn-block" type="submit">Done</button>
+            </form>
+        </div>
+        <br>
+    </div>
+{% endblock %}

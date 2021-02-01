@@ -3,7 +3,7 @@
 {% block content %}
     <br>
     <div class="col-md-12 d-flex justify-content-center">
-        <div class="list-group justify-content-center">
+        <div class="list-group justify-content-center col-md-6">
             {% if users %}
                 <div class="d-flex justify-content-center">
                     <h5>Users</h5>
@@ -18,6 +18,22 @@
             {% endif %}
             <br>
             <a class="btn btn-primary btn-block" href="/users/new" methods="GET" role="button">New user</a>
+        </div>
+        <div class="list-group justify-content-center col-md-6">
+            {% if tags %}
+                <div class="d-flex justify-content-center">
+                    <h5>Tags</h5>
+                </div>
+                {% for tag in tags %}
+                    <a href="/tags/{{ tag.id }}/detail" class="list-group-item list-group-item-action">
+                        {{ tag.name }}
+                    </a>
+                {% endfor %}
+            {% else %}
+                <h5>No tags found.</h5>
+            {% endif %}
+            <br>
+            <a class="btn btn-primary btn-block" href="/tags/new" methods="GET" role="button">New tag</a>
         </div>
     </div>
 {% endblock %}

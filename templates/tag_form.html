@@ -1,0 +1,23 @@
+{% extends 'base.html'%}
+
+{% block content %}
+    <br>
+    <div class="col-md-12 d-flex justify-content-center">
+        <h4>Create new tag</h4>
+    </div>
+    <div class="container">
+        <div class="col-md-12 d-flex justify-content-center">
+            <form action="/tags/new" method="POST">
+                <div class="form-group text-center">
+                    <label for="name">Title:</label>
+                    <input class="form-control" type="text" name="name" id="name">
+                </div>
+                <button class="btn btn-primary btn-block" type="submit">Create</button>
+            </form>
+        </div>
+        <br>
+        <div class="col-md-12 d-flex justify-content-center">
+            <a class="btn btn-light" href="/" methods="GET" role="button">Home</a>
+        </div>
+    </div>
+{% endblock %}
